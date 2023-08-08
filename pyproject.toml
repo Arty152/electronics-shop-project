@@ -8,6 +8,7 @@ packages = [{include = "electronics_shop_project"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+pyproject-toml = "^0.0.10"
 
 
 [build-system]
