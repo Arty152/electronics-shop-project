@@ -57,7 +57,7 @@ class Item:
         """
         objects = []
         dir = os.path.dirname(os.path.abspath(__file__))
-        csv_path = os.path.join(dir, '..', 'src', 'items.csv')
+        csv_path = os.path.join(dir, 'items.csv')
         with open(csv_path) as file:
             reader = csv.DictReader(file)
             for row in reader:
