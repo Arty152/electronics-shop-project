@@ -16,3 +16,13 @@ def test_apply_discount(fixture):
     fixture.pay_rate = 0.8
     fixture.apply_discount()
     assert fixture.price == 8.0
+
+
+def test_instantiate_from_csv():
+    items = Item.instantiate_from_csv()
+    assert len(items) == 5
+
+
+def test_string_to_number(fixture):
+    assert fixture.string_to_number('10') == 10
+    assert fixture.string_to_number('5.5') == 5
