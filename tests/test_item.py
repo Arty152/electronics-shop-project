@@ -26,3 +26,20 @@ def test_instantiate_from_csv():
 def test_string_to_number(fixture):
     assert fixture.string_to_number('10') == 10
     assert fixture.string_to_number('5.5') == 5
+
+
+def test_name_setter(fixture):
+    fixture.name = "Супермегасмартфон"
+    assert fixture.name == "Супермегас"
+    fixture.name = "Фен"
+    assert fixture.name == "Фен"
+
+
+def test_repr(fixture):
+    expected = "Item('Тестовый товар', 10.0, 5)"
+    assert repr(fixture) == expected
+
+
+def test_str(fixture):
+    expected = "Тестовый товар"
+    assert str(fixture) == expected
