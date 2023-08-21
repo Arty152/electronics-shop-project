@@ -10,6 +10,7 @@ packages = [{include = "electronics_shop_project"}]
 python = "^3.11"
 pyproject-toml = "^0.0.10"
 pytest = "^7.4.0"
+coverage = "^7.3.0"
 
 
 [build-system]
