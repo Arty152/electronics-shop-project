@@ -5,7 +5,7 @@ class Phone(Item):
 
     def __init__(self, name: str, price: float, quantity: int, number_of_sim: int):
         super().__init__(name, price, quantity)
-        if number_of_sim <= 0 and isinstance(number_of_sim, int):
+        if not isinstance(number_of_sim, int) or number_of_sim <= 0:
             raise ValueError("Количество физических SIM-карт должно быть целым числом больше нуля.")
         self.__number_of_sim = number_of_sim
 
@@ -18,6 +18,6 @@ class Phone(Item):
 
     @number_of_sim.setter
     def number_of_sim(self, value):
-        if value <= 0 and isinstance(value, int):
+        if not isinstance(value, int) or value <= 0:
             raise ValueError("Количество физических SIM-карт должно быть целым числом больше нуля.")
         self.__number_of_sim = value

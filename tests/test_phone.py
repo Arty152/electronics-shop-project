@@ -21,3 +21,9 @@ def test_phone_number_of_sim(fixture_phone):
 
     with pytest.raises(ValueError):
         fixture_phone.number_of_sim = 0
+        fixture_phone.number_of_sim = 4.5
+
+
+def test_init_phone():
+    with pytest.raises(ValueError):
+        Phone("iPhone 14", 120_000, 5, 0)
