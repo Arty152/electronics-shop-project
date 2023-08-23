@@ -34,4 +34,6 @@ class Keyboard(Item, KeyboardMixin):
     def language(self, value):
         if value not in ['EN', 'RU']:
             raise AttributeError("property 'language' of 'Keyboard' object has no setter")
+        self._language = value
+
 
