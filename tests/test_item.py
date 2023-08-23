@@ -1,4 +1,3 @@
-"""Здесь надо написать тесты с использованием pytest для модуля item."""
 import pytest
 from src.item import Item
 from src.phone import Phone
@@ -42,15 +41,15 @@ def test_name_setter(fixture_item):
 
 
 def test_repr(fixture_item):
-    expected = "Item('Тестовый товар', 10.0, 5)"
-    assert repr(fixture_item) == expected
+    assert repr(fixture_item) == "Item('Тестовый товар', 10.0, 5)"
 
 
 def test_str(fixture_item):
-    expected = "Тестовый товар"
-    assert str(fixture_item) == expected
+    assert str(fixture_item) == "Тестовый товар"
 
 
 def test_add(fixture_phone, fixture_item):
-    assert fixture_phone.quantity + fixture_item.quantity == 10
-
+    assert fixture_phone + fixture_item == 10
+    other = "Object of another class"
+    with pytest.raises(TypeError):
+        fixture_phone + other
