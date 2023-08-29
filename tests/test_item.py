@@ -1,5 +1,6 @@
+import os
 import pytest
-from src.item import Item
+from src.item import Item, InstantiateCSVError
 from src.phone import Phone
 
 
@@ -11,6 +12,12 @@ def fixture_item():
 @pytest.fixture
 def fixture_phone():
     return Phone("iPhone 14", 120_000, 5, 2)
+
+
+@pytest.fixture
+def fixture_file():
+    dir = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(dir, 'test_item.csv')
 
 
 def test_calculate_total_price(fixture_item):
@@ -26,6 +33,10 @@ def test_apply_discount(fixture_item):
 def test_instantiate_from_csv():
     items = Item.instantiate_from_csv()
     assert len(items) == 5
+    assert items[2].name == 'Кабель'
+    assert items[2].price == 10
+    assert items[2].quantity == 5
+    assert items[-1].name == 'Клавиатура'
 
 
 def test_string_to_number(fixture_item):
@@ -53,3 +64,18 @@ def test_add(fixture_phone, fixture_item):
     other = "Object of another class"
     with pytest.raises(TypeError):
         fixture_phone + other
+
+
+def test_missing_csv_file():
+    with pytest.raises(FileNotFoundError) as e:
+        Item.instantiate_from_csv('error')
+    assert str(e.value) == 'Отсутствует файл items.csv'
+
+
+def test_corrupted_csv_file(fixture_file):
+    with pytest.raises(InstantiateCSVError):
+        Item.instantiate_from_csv(fixture_file)
+
+
+if __name__ == '__main__':
+    pytest.main([__file__])

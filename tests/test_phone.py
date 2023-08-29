@@ -1,5 +1,4 @@
 import pytest
-
 from src.phone import Phone
 
 
@@ -27,3 +26,7 @@ def test_phone_number_of_sim(fixture_phone):
 def test_init_phone():
     with pytest.raises(ValueError):
         Phone("iPhone 14", 120_000, 5, 0)
+
+
+if __name__ == '__main__':
+    pytest.main([__file__])
